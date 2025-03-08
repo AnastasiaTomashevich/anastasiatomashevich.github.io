@@ -1,9 +1,253 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Example</title>
-    </head>
-    <body>
-        <p>This is an example of a simple HTML page with one paragraph.</p>
-    </body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ветклиника "Мокрый Нос" - Гродно</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito+Sans&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2A9D8F;
+            --secondary-color: #264653;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Шапка */
+        .header {
+            background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)),
+                        url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1920') center/cover;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Навигация */
+        .navbar {
+            background: var(--secondary-color);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .navbar a:hover {
+            opacity: 0.8;
+        }
+
+        /* Основной контент */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        /* Сетка услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Контакты */
+        .contacts {
+            background: #f8f9fa;
+        }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .contact-info div {
+            margin: 1.5rem 0;
+        }
+
+        /* Футер */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .navbar {
+                text-align: center;
+            }
+            .navbar a {
+                display: block;
+                margin: 1rem 0;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Ветклиника "Мокрый Нос"</h1>
+        <p style="font-size: 1.2rem;">Профессиональная забота о ваших питомцах</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="#services">Услуги</a>
+        <a href="#about">О нас</a>
+        <a href="#price">Цены</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+
+    <section id="services" class="section">
+        <h2>Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🐾</div>
+                <h3>Терапия</h3>
+                <p>Диагностика и лечение заболеваний</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔬</div>
+                <h3>Анализы</h3>
+                <p>Лабораторные исследования</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💉</div>
+                <h3>Вакцинация</h3>
+                <p>Профилактика заболеваний</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>О клинике</h2>
+        <div style="display: grid; gap: 2rem; grid-template-columns: 1fr 1fr;">
+            <div>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Современная ветеринарная клиника с 2020 года оказывает полный спектр услуг 
+                    для домашних животных. Мы используем новейшее оборудование и 
+                    индивидуальный подход к каждому пациенту.
+                </p>
+                <ul style="margin-top: 1.5rem; list-style: none;">
+                    <li>✅ Лицензированные специалисты</li>
+                    <li>✅ Собственная лаборатория</li>
+                    <li>✅ Стационарное наблюдение</li>
+                </ul>
+            </div>
+            <img src="https://via.placeholder.com/600x400" alt="Интерьер клиники" style="border-radius: 10px;">
+        </div>
+    </section>
+
+    <section id="contacts" class="section contacts">
+        <h2>Контакты</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div>
+                    <h3>Адрес</h3>
+                    <p>г. Гродно, пр. Космонавтов, 100</p>
+                </div>
+                <div>
+                    <h3>Телефон</h3>
+                    <p>+375 (29) 123-45-67</p>
+                </div>
+                <div>
+                    <h3>Режим работы</h3>
+                    <p>Пн-Пт: 8:00-21:00<br>Сб-Вс: 9:00-18:00</p>
+                </div>
+            </div>
+            <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=23.832221,53.686676&z=17" 
+                width="100%" 
+                height="400" 
+                frameborder="0" 
+                style="border-radius: 10px;"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 Ветклиника "Мокрый Нос"</p>
+        <p style="margin-top: 1rem;">Лицензия № М-1111 от 01.01.2024</p>
+    </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Ленивая загрузка изображений
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+    </script>
+</body>
 </html>
