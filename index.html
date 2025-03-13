@@ -3,251 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ветклиника "Мокрый Нос" - Гродно</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito+Sans&display=swap" rel="stylesheet">
+    <title>Мокрый Нос - Ветеринарная клиника</title>
     <style>
-        :root {
-            --primary-color: #2A9D8F;
-            --secondary-color: #264653;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            font-family: 'Nunito Sans', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background: #f0f9ff;
         }
 
-        /* Шапка */
-        .header {
-            background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)),
-                        url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1920') center/cover;
+        header {
+            background: #3B82F6;
+            padding: 1rem;
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            min-height: 60vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Навигация */
-        .navbar {
-            background: var(--secondary-color);
-            padding: 1.2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-        .navbar a {
+
+        .contact-info {
+            text-align: right;
+        }
+
+        .call-button {
+            background: #10B981;
             color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
             text-decoration: none;
-            margin: 0 2rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-        .navbar a:hover {
-            opacity: 0.8;
+            transition: transform 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* Основной контент */
-        .section {
+        .call-button:hover {
+            transform: translateY(-2px);
+        }
+
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            justify-content: flex-end;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: #f0f9ff;
+        }
+
+        section {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .section h2 {
-            color: var(--secondary-color);
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
 
-        /* Сетка услуг */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .service-card {
+        .section-block {
             background: white;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Контакты */
-        .contacts {
-            background: #f8f9fa;
-        }
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        .contact-info div {
-            margin: 1.5rem 0;
-        }
-
-        /* Футер */
-        .footer {
-            background: var(--secondary-color);
+        footer {
+            background: #1E3A8A;
             color: white;
             padding: 2rem;
             text-align: center;
         }
 
-        /* Адаптивность */
+        .map-container {
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #3B82F6;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
         @media (max-width: 768px) {
-            .navbar {
+            .nav-menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+            
+            header {
+                flex-direction: column;
                 text-align: center;
             }
-            .navbar a {
-                display: block;
-                margin: 1rem 0;
-            }
-            .contact-wrapper {
-                grid-template-columns: 1fr;
+            
+            .contact-info {
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Ветклиника "Мокрый Нос"</h1>
-        <p style="font-size: 1.2rem;">Профессиональная забота о ваших питомцах</p>
+    <header>
+        <div class="logo-section">
+            <h1>Мокрый Нос</h1>
+        </div>
+        <div class="contact-info">
+            <p>🕒 Пн-Сб 12:00-21:00, Вс - выходной</p>
+            <p>📍 пр-т Космонавтов 100/111, каб. 113</p>
+        </div>
+        <a href="tel:+375339133911" class="call-button">Позвонить</a>
     </header>
 
-    <nav class="navbar">
-        <a href="#services">Услуги</a>
-        <a href="#about">О нас</a>
-        <a href="#price">Цены</a>
-        <a href="#contacts">Контакты</a>
+    <nav>
+        <ul class="nav-menu">
+            <li class="dropdown">
+                <a href="#about">Клиентам ▼</a>
+                <div class="dropdown-content">
+                    <a href="#about">О нас</a>
+                    <a href="#staff">Персонал</a>
+                    <a href="#contract">Договор оферты</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#services">Услуги ▼</a>
+                <div class="dropdown-content">
+                    <a href="#consultations">Консультации</a>
+                    <a href="#lab">Лабораторные услуги</a>
+                    <a href="#uzi">УЗИ</a>
+                    <a href="#therapy">Терапия</a>
+                    <a href="#vaccine">Вакцинация</a>
+                </div>
+            </li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
     </nav>
 
-    <section id="services" class="section">
-        <h2>Наши услуги</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🐾</div>
-                <h3>Терапия</h3>
-                <p>Диагностика и лечение заболеваний</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔬</div>
-                <h3>Анализы</h3>
-                <p>Лабораторные исследования</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💉</div>
-                <h3>Вакцинация</h3>
-                <p>Профилактика заболеваний</p>
-            </div>
-        </div>
+    <section id="about" class="section-block">
+        <h2>О нашей клинике</h2>
+        <p>Текст о клинике...</p>
+        <a href="#" class="back-to-top">↑</a>
     </section>
 
-    <section id="about" class="section">
-        <h2>О клинике</h2>
-        <div style="display: grid; gap: 2rem; grid-template-columns: 1fr 1fr;">
-            <div>
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    Современная ветеринарная клиника с 2020 года оказывает полный спектр услуг 
-                    для домашних животных. Мы используем новейшее оборудование и 
-                    индивидуальный подход к каждому пациенту.
-                </p>
-                <ul style="margin-top: 1.5rem; list-style: none;">
-                    <li>✅ Лицензированные специалисты</li>
-                    <li>✅ Собственная лаборатория</li>
-                    <li>✅ Стационарное наблюдение</li>
-                </ul>
-            </div>
-            <img src="https://via.placeholder.com/600x400" alt="Интерьер клиники" style="border-radius: 10px;">
-        </div>
+    <section id="staff" class="section-block">
+        <h2>Наш персонал</h2>
+        <p>Информация о специалистах...</p>
+        <a href="#" class="back-to-top">↑</a>
     </section>
 
-    <section id="contacts" class="section contacts">
+    <!-- Добавьте остальные секции по аналогии -->
+
+    <section id="contacts" class="section-block">
         <h2>Контакты</h2>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <div>
-                    <h3>Адрес</h3>
-                    <p>г. Гродно, пр. Космонавтов, 100</p>
-                </div>
-                <div>
-                    <h3>Телефон</h3>
-                    <p>+375 (29) 123-45-67</p>
-                </div>
-                <div>
-                    <h3>Режим работы</h3>
-                    <p>Пн-Пт: 8:00-21:00<br>Сб-Вс: 9:00-18:00</p>
-                </div>
-            </div>
-            <iframe 
-                src="https://yandex.ru/map-widget/v1/?ll=23.832221,53.686676&z=17" 
-                width="100%" 
-                height="400" 
-                frameborder="0" 
-                style="border-radius: 10px;"
-                allowfullscreen>
-            </iframe>
+        <div class="map-container">
+            <iframe src="https://yandex.by/maps/-/CHFYv49B" width="100%" height="100%" frameborder="0"></iframe>
         </div>
+        <a href="#" class="back-to-top">↑</a>
     </section>
 
-    <footer class="footer">
-        <p>© 2024 Ветклиника "Мокрый Нос"</p>
-        <p style="margin-top: 1rem;">Лицензия № М-1111 от 01.01.2024</p>
+    <footer>
+        <p>© Мокрый Нос 2024</p>
+        <p>📱 Instagram: <a href="https://instagram.com/mokryj.nos" style="color: white;">@mokryj.nos</a></p>
+        <p>Телефон: <a href="tel:+375339133911" style="color: white;">+375 33 913-39-11</a></p>
     </footer>
-
-    <script>
-        // Плавная прокрутка
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
-        // Ленивая загрузка изображений
-        document.addEventListener("DOMContentLoaded", function() {
-            const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-            
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.src = lazyImage.dataset.src;
-                            lazyImage.classList.remove("lazy");
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
-        });
-    </script>
 </body>
 </html>
