@@ -217,7 +217,65 @@
 
     <section id="staff" class="section-block">
       <h2>Наш персонал</h2>
-		<img src="Томашевич-6-1024x1536.jpg" width="1024" height="1536" alt=""/>
+		<style>
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+    cursor: pointer;
+    z-index: 10000;
+  }
+</style>
+
+<img src="Томашевич-6-1024x1536.jpg" 
+     style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" 
+     onclick="openModal()">
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img src="Томашевич-6-1024x1536.jpg" class="modal-img">
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("modal").style.display = "block";
+  document.body.style.overflow = "hidden"; // Блокируем скролл страницы
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  document.body.style.overflow = "auto"; // Восстанавливаем скролл
+}
+</script>
       <p>Томашевич А.С.</p>
         <p>&nbsp;</p>
 <img src="Шимак-1-1-1024x1536.jpg" width="1024" height="1536" alt=""/>
