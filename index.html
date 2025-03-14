@@ -225,7 +225,14 @@
           <tr>
             <td><img src="Томашевич-6-1024x1536.jpg" 
      style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" 
-     onclick="openModal()"></td>
+     onclick="openModal()">
+			  <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img src="Томашевич-6-1024x1536.jpg" class="modal-img">
+  </div>
+</div>
+			  </td>
             <td>&nbsp;</td>
             <td><p>Томашевич Анастасия Сергеевна</p>
             <p>&nbsp;</p></td>
@@ -233,7 +240,14 @@
           <tr>
             <td><img src="Шимак-1-1-1024x1536.jpg" 
      style="width: 300px; height: 300px; object-fit: cover; cursor: pointer;" 
-     onclick="openModal()"></td>
+     onclick="openModal()">
+			 <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img src="Шимак-1-1-1024x1536.jpg" class="modal-img">
+  </div>
+</div> 
+			  </td>
             <td>&nbsp;</td>
             <td>&nbsp;Шимак А.В.</td>
           </tr>
@@ -293,12 +307,7 @@
 
 
 
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img src="Томашевич-6-1024x1536.jpg" class="modal-img">
-  </div>
-</div>
+
 
 <script>
 function openModal() {
