@@ -176,11 +176,11 @@
 <nav>
         <ul class="nav-menu">
             <li class="dropdown">
-                <a href="#about">Клиентам ▼</a>
+                <a href="">Клиентам ▼</a>
                 <div class="dropdown-content">
                     <a href="#about">О нас</a>
                     <a href="#staff">Персонал</a>
-                    <a href="#contract">Договор оферты</a>
+                    <a href="javascript:void(0)" onclick="openModal()">Договор оферты</a>
                 </div>
             </li>
             <li class="dropdown">
@@ -221,158 +221,299 @@
       <p>&nbsp;</p>
       <p>&nbsp;</p>
       
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 9999;
-  }
-  
-  .modal-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .modal-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    text-shadow: 0 0 5px black;
-    cursor: pointer;
-    z-index: 10000;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудники компании</title>
+    <style>
+        /* Базовые стили и сброс */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<table width="200" border="1">
-  <tbody>
-    <tr>
-      <td>
-        <img src="Томашевич-6-1024x1536.jpg" 
-             class="thumbnail"
-             onclick="openModal(this.src)">
-      </td>
-      <td>&nbsp;</td>
-      <td>Томашевич Анастасия Сергеевна</td>
-    </tr>
-    <tr>
-      <td>
-        <img src="Шимак-1-1-1024x1536.jpg" 
-             class="thumbnail"
-             onclick="openModal(this.src)">
-      </td>
-      <td>&nbsp;</td>
-      <td>Шимак А.В.</td>
-    </tr>
-  </tbody>
-</table>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background: #f0f2f5;
+        }
 
-<!-- Единое модальное окно -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modal-image" class="modal-img">
-  </div>
-</div>
+        /* Контейнер для карточек сотрудников */
+        .employees-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-<style>
-.thumbnail {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  cursor: pointer;
-}
+        /* Стили карточки сотрудника */
+        .employee-card {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-}
+        .employee-card:hover {
+            transform: translateY(-5px);
+        }
 
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
+        /* Стили для изображения */
+        .employee-photo {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-.modal-img {
-  width: 100%;
-  height: auto;
-}
+        .employee-photo:hover {
+            transform: scale(1.03);
+        }
 
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-}
-</style>
+        /* Стили модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+            z-index: 1000;
+        }
 
-<script>
-function openModal(imgSrc) {
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("modal-image").src = imgSrc;
-}
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90hv;
+        }
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
+        .modal-img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 80vh; /* Оставляем место для крестика */
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+            border-radius: 5px;
+        }
+		
+		/* Адаптация для очень высоких изображений */
+    @media (max-height: 600px) {
+        .modal-img {
+            max-height: 70vh;
+        }
+    }
 
-// Закрытие по клику вне изображения
-window.onclick = function(event) {
-  if (event.target == document.getElementById('modal')) {
-    closeModal();
-  }
-}
-</script>
+        /* Крестик закрытия */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .employee-card {
+                flex-direction: column;
+            }
+
+            .employee-photo {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Стили текстовой информации */
+        .employee-info {
+            flex: 1;
+        }
+
+        .employee-info h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .employee-info p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="employees-container">
+        <!-- Сотрудник 1 -->
+        <div class="employee-card">
+            <img src="Томашевич-6-1024x1536.jpg" 
+                 alt="Фото сотрудника" 
+                 class="employee-photo"
+                 onclick="openModal(this)">
+            
+            <div class="employee-info">
+                <h2>Томашевич Анастасия Сергеевна</h2>
+                <p>Специализация: Терапия, Эндокринология, УЗ диагностика, лаб. диагностика.</p>
+            </div>
+        </div>
+
+        <!-- Сотрудник 2 -->
+        <div class="employee-card">
+            <img src="Шимак-1-1-1024x1536.jpg" 
+                 alt="Фото сотрудника" 
+                 class="employee-photo"
+                 onclick="openModal(this)">
+            
+            <div class="employee-info">
+                <h2>Шимак Анастасия Валерьевна</h2>
+                <p>Специализация: Кардиология, Терапия.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img class="modal-img" id="modalImage" src="" alt="Увеличенное фото">
+        </div>
+    </div>
+
+    <script>
+        function openModal(img) {
+            const modal = document.getElementById("modal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Закрытие по клику вне изображения
+        window.onclick = function(event) {
+            const modal = document.getElementById("modal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
 
 
 
-<script>
-function openModal() {
-  document.getElementById("modal").style.display = "block";
-  document.body.style.overflow = "hidden"; // Блокируем скролл страницы
-}
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-  document.body.style.overflow = "auto"; // Восстанавливаем скролл
-}
-</script>
-     
-<a href="#" class="back-to-top">↑</a>
-</section>
-
-    <!-- Добавьте остальные секции по аналогии -->
+    <!-- Контакты -->
 
     <section id="contacts" class="section-block">
         <h2>Контакты</h2>
 
-         <section class="map-container">
-            <iframe src="https://yandex.by/map-widget/v1/-/CHFYv49B" width="100%" height="400" frameborder="0"></iframe>
-        </section>
+         <style>
+.map-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 15px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.map-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Соотношение 16:9 для адаптивной высоты */
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.9);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Декоративные элементы */
+.map-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 33%, rgba(255,255,255,0.1) 50%, transparent 67%);
+    animation: gradient-move 6s infinite linear;
+    z-index: 0;
+}
+
+@keyframes gradient-move {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .map-wrapper {
+        margin: 1rem;
+        padding: 10px;
+        border-radius: 15px;
+    }
+    
+    .map-container {
+        padding-bottom: 75%; /* 4:3 для мобильных */
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        padding-bottom: 100%; /* Квадратный формат для очень маленьких экранов */
+    }
+}
+</style>
+
+<div class="map-wrapper">
+    <div class="map-container">
+        <iframe src="https://yandex.by/map-widget/v1/-/CHFYv49B" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
   
         <a href="#" class="back-to-top">↑</a>
     </section>
@@ -382,5 +523,173 @@ function closeModal() {
         <p>📱 Instagram: <a href="https://instagram.com/mokryj.nos" style="color: white;">@mokryj.nos</a></p>
         <p>Телефон: <a href="tel:+375339133911" style="color: white;">+375 33 913-39-11</a></p>
     </footer>
+		
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Договор оферты</title>
+    <style>
+        /* Стили модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 2% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 8px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-container {
+            flex: 1;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .close-btn {
+            background: #dc3545;
+        }
+
+        .close-btn:hover {
+            background: #bb2d3b;
+        }
+
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ссылка для открытия модального окна -->
+    <a href="javascript:void(0)" onclick="openModal()">Договор оферты</a>
+
+    <!-- Модальное окно -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="controls">
+                <div class="zoom-controls">
+                    <button onclick="zoomOut()">Уменьшить (-)</button>
+                    <button onclick="zoomIn()">Увеличить (+)</button>
+                </div>
+                <div>
+                    <button onclick="downloadFile()">Скачать PDF</button>
+                    <button class="close-btn" onclick="closeModal()">Закрыть</button>
+                </div>
+            </div>
+            
+            <div class="pdf-container">
+                <iframe id="pdf-viewer" src="/dogovor.pdf#toolbar=0&scrollbar=0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScale = 1;
+        const scaleStep = 0.1;
+
+        function openModal() {
+            document.getElementById('pdfModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('pdfModal').style.display = 'none';
+            resetZoom();
+        }
+
+        function zoomIn() {
+            currentScale += scaleStep;
+            updateZoom();
+        }
+
+        function zoomOut() {
+            if(currentScale > 0.2) {
+                currentScale -= scaleStep;
+                updateZoom();
+            }
+        }
+
+        function resetZoom() {
+            currentScale = 1;
+            updateZoom();
+        }
+
+        function updateZoom() {
+            const viewer = document.getElementById('pdf-viewer');
+            viewer.style.transform = `scale(${currentScale})`;
+            viewer.style.transformOrigin = '0 0';
+        }
+
+        function downloadFile() {
+            const link = document.createElement('a');
+            link.href = '/dogovor.pdf';
+            link.download = 'dogovor.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Закрытие модального окна при клике вне контента
+        window.onclick = function(event) {
+            const modal = document.getElementById('pdfModal');
+            if(event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 </body>
 </html>
