@@ -184,14 +184,16 @@
                 </div>
             </li>
             <li class="dropdown">
-                <a href="#services">Услуги ▼</a>
-                <div class="dropdown-content">
-                    <a href="#consultations">Консультации</a>
-                    <a href="#lab">Лабораторные услуги</a>
-                    <a href="#uzi">УЗИ</a>
-                    <a href="#therapy">Терапия</a>
-                    <a href="#vaccine">Вакцинация</a>
-                </div>
+    <a href="#services">Услуги ▼</a>
+    <div class="dropdown-content">
+        <a href="javascript:void(0)" onclick="openSheetModal('49344951')">Консультации</a>
+        <a href="javascript:void(0)" onclick="openSheetModal('295994884')">Лабораторные услуги</a>
+        <a href="javascript:void(0)" onclick="openSheetModal('955354986')">УЗИ</a>
+        <a href="javascript:void(0)" onclick="openSheetModal('1107451888')">Терапия</a>
+        <a href="javascript:void(0)" onclick="openSheetModal('176562154')">Вакцинация</a>
+    </div>
+</li>
+		    
             </li>
             <li><a href="#contacts">Контакты</a></li>
   </ul>
@@ -425,6 +427,51 @@
             }
         }
     </script>
+	
+   <!-- Модальное окно для прайса -->
+	
+<!-- Добавляем новое модальное окно для таблиц -->
+<div id="sheetModal" class="modal">
+    <span class="close" onclick="closeSheetModal()">&times;</span>
+    <div class="modal-content" style="width: 90%; height: 90%;">
+        <iframe id="sheetIframe" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+</div>
+
+
+<script>
+    // Функции для работы с модальным окном таблиц
+    function openSheetModal(gid) {
+        const modal = document.getElementById("sheetModal");
+        const iframe = document.getElementById("sheetIframe");
+        const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2DN5PCwXjhnlQdG5pW5LUk1v7jjo9RrHCwWxY8eJK0NpVNWunZqadt5PfRBjNzVUMeibkhomGCxfo/pubhtml?";
+        iframe.src = `${baseUrl}gid=${gid}&single=true&widget=true&headers=false`;
+        modal.style.display = "flex";
+    }
+
+    function closeSheetModal() {
+        document.getElementById("sheetModal").style.display = "none";
+    }
+
+    // Обновляем обработчик кликов для обоих модальных окон
+    window.onclick = function(event) {
+        const imgModal = document.getElementById("modal");
+        const sheetModal = document.getElementById("sheetModal");
+        
+        if (event.target == imgModal) {
+            imgModal.style.display = "none";
+        }
+        if (event.target == sheetModal) {
+            sheetModal.style.display = "none";
+        }
+    }
+</script>	
+
+
+
+
+
+	
 </body>
 </html>
 
