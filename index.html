@@ -162,9 +162,12 @@
 </head>
 <body>
 <header>
-        <div class="logo-section">
-            <h1>Мокрый Нос</h1> <h2><br/>ветеринарная клиника</h2>
-  </div>
+        <div class="logo-section h1">
+            <p>Мокрый Нос</p>
+	 </div>
+	<div class="logo-section h2">	
+	<p>ветеринарная клиника</p>
+	</div>
 <img src="dog.png" width="70" height="70" alt=""/>
 	
   <a href="https://www.instagram.com/mokryj.nos/" target="_blank">
@@ -333,6 +336,44 @@
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
                     0 10px 10px rgba(0,0,0,0.22);
     }
+
+
+.logo-section {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #17a2b8;
+}
+
+.logo-section h1 {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.logo-section h2 {
+    font-family: 'Arial', sans-serif;
+    color: #17a2b8;
+    font-size: 1.2em;
+    margin: 5px 0 0;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* Дополнительные стили для hover-эффекта */
+.logo-section:hover h1 {
+    color: #17a2b8;
+    transition: color 0.3s ease;
+}
+
+.logo-section:hover h2 {
+    color: #2c3e50;
+    transition: color 0.3s ease;
+}
+
+	    
 		
 		/* Адаптация для очень высоких изображений */
     @media (max-height: 600px) {
