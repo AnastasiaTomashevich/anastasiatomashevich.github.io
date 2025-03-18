@@ -166,11 +166,19 @@
             <h1>Мокрый Нос</h1>
   </div>
 <img src="dog.png" width="70" height="70" alt=""/>
-  <img src="logo.gif" width="101" height="97" alt=""/>
+	
+  <a href="https://www.instagram.com/mokryj.nos/" target="_blank">
+    <img src="logo.gif" 
+         class="shadow-img"
+         width="101" 
+         height="97" 
+         alt="Логотип Мокрый нос">
+</a>
+	
 	<img src="cat.png" width="70" height="70" alt=""/>
         <div class="contact-info">
-            <p>🕒 Пн-Сб 12:00-21:00, Вс 12:00-17:00</p>
-            <p>📍 пр-т Космонавтов 100/111, каб. 113</p>
+            <p>🕒 Пн-Сб 12:00-21:00,<br/> Вс 12:00-17:00</p>
+            <p>📍 пр-т Космонавтов 100/111,<br/> каб. 113</p>
         </div>
         <a href="tel:+375339133911" class="call-button">Позвонить</a>
 </header>
@@ -312,6 +320,14 @@
         margin: 0 auto;
             border-radius: 5px;
         }
+/* Стиль логотипа */
+	    .shadow-img {
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .shadow-img:hover {
+        box-shadow: 8px 8px 25px rgba(0,0,0,0.4);
+    }
 		
 		/* Адаптация для очень высоких изображений */
     @media (max-height: 600px) {
