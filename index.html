@@ -456,10 +456,50 @@
         <a href="#" class="back-to-top">↑</a>
     
 
-    <footer>
-        <p>© Мокрый Нос</p>
-        <p>Телефон: <a href="tel:+375339133911" style="color: white;"><br/>+375 339 13-39-11</a></p>
-    </footer>
-		
+   <footer>
+    <p>© Мокрый Нос</p>
+    <p>Телефон: <a href="tel:+375339133911" style="color: white;">+375 339 13-39-11</a></p>
+
+    <!-- Счётчик посещений -->
+    <div class="counter">
+        Посетителей: <span id="visitorCount">0</span>
+    </div>
+</footer>
+
+<!-- Скрипты вынесены за пределы футера -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics (замените G-XXXXXXXXXX на ваш ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-350474944"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-350474944');
+    </script>
+
+    <!-- Стили для счётчика -->
+    <style>
+        .counter {
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Скрипт для CountAPI -->
+    <script>
+        fetch('https://api.countapi.xyz/hit/350474944/visits')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visitorCount').textContent = data.value;
+            })
+            .catch(error => {
+                console.error('Ошибка CountAPI:', error);
+            });
+    </script>
 </body>
 </html>
