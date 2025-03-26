@@ -1,0 +1,262 @@
+
+:root {
+  --dropdown-bg: #fff;
+  --dropdown-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  --link-hover-bg: #f0f9ff;
+  --transition-speed: 0.2s;
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #f0f9ff;
+}
+
+/* Хедер */
+header {
+    background: #2E8B57;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.call-button {
+    background: #10B981;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: transform 0.3s;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.call-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Навигация */
+nav {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dropdown-bg);
+  min-width: 200px;
+  box-shadow: var(--dropdown-shadow);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  transform: translateY(-10px);
+  transition: 
+    opacity var(--transition-speed) ease,
+    visibility var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: 
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+}
+
+.dropdown-content a:hover {
+  background: var(--link-hover-bg);
+}
+
+@media (hover: none) {
+  .dropdown-content {
+    transition: none;
+  }
+}
+
+#contacts {
+  padding: 0px 0; /* Вертикальные отступы внутри секции */
+  margin: 0; /* Убираем внешние отступы */
+}
+
+/* Основной контент */
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-block {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Футер */
+footer {
+    background: #2E8B57;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Дополнительные элементы */
+.map-container {
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #2E8B57;
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Медиа-запросы */
+@media (max-width: 666px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dropdown-content {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dropdown-bg);
+  min-width: 200px;
+  box-shadow: var(--dropdown-shadow);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  transform: translateY(-10px);
+  transition: 
+    opacity var(--transition-speed) ease,
+    visibility var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
+  z-index: 1;
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-info {
+        text-align: center;
+    }
+}
+
+/* Медиа-запросы */
+.map-container {
+ 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.map-container {
+    /* Базовые стили для контейнера */
+    width: 100%;
+    height: 600px; /* Стандартная высота для десктопов */
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden; /* Для скругления углов карты */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень для красивого эффекта */
+}
+
+.yandex-map {
+    width: 100%;
+    height: 100%;
+    border: 0; /* Убираем границу если это iframe */
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 1024px) {
+    .map-container {
+        height: 500px;
+        margin: 0 20px; /* Боковые отступы */
+        width: calc(100% - 40px); /* Компенсируем margins */
+    }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .map-container {
+        height: 400px;
+        border-radius: 8px; /* Сохраняем скругление */
+        margin: 0 10px;
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .map-container {
+        height: 300px;
+        margin: 0; /* На очень маленьких экранах убираем margins */
+        width: 100%;
+        border-radius: 0; /* Убираем скругление если нужно */
+    }
+}
+
+/* Для очень узких экранов */
+@media (max-width: 360px) {
+    .map-container {
+        height: 250px;
+    }
+}
